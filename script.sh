@@ -83,7 +83,6 @@ EOF
                 ;;
             esac
         done
-        ;;
 }
 
 drivers_nvidia(){
@@ -114,7 +113,7 @@ drivers_nvidia(){
                 
                 3) break;;
                 esac
-            done;;
+            done
 }
 
 configurar_swappines() {
@@ -140,7 +139,6 @@ configurar_swappines() {
                     ;;
                 esac
             done
-            ;;
 }
 
 configurar_flatpak() {
@@ -171,7 +169,6 @@ configurar_flatpak() {
                     ;;
                 esac
             done
-            ;;
 }
 
 configurar_firewall() {

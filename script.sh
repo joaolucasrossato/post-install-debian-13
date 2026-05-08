@@ -127,12 +127,18 @@ configurar_swappines() {
             read -p "Escolha a opção: " SWAP
             case $SWAP in
                 1)
-                    sysctl vm.swappiness=10
+                    echo 10 > /proc/sys/vm/swappiness
+                    
+                    # Salva para persistir após reiniciar
                     echo 'vm.swappiness=10' >> /etc/sysctl.conf
+                    
                     echo "Swappiness ajustado para 10!"
+                    sleep 2
                     ;;
                 2)
+                    echo "Valor atual da Swappiness:"
                     cat /proc/sys/vm/swappiness
+                    sleep 3
                     ;;
                 3)
                     break
@@ -173,13 +179,15 @@ configurar_flatpak() {
 
 configurar_firewall() {
     apt install ufw gufw -y
-    ufw enable
     echo "Concluído!"
 
     sleep 3
 }
 
 habilitar_sudo() {
+
+    read -p "Digite o nome do usuário para dar permissão de sudo: " USUARIO
+
     if id "$USUARIO" &>/dev/null; then
         
         usermod -aG sudo "$USUARIO"
